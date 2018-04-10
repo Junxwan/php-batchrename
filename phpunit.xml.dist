@@ -6,7 +6,6 @@
          verbose="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
-         beStrictAboutChangesToGlobalState="true"
          beStrictAboutCoversAnnotation="true"
          beStrictAboutResourceUsageDuringSmallTests="true"
          forceCoversAnnotation="true">
