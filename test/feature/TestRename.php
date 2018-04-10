@@ -8,7 +8,7 @@ class TestRename extends \PHPUnit\Framework\TestCase
     {
         $rename = new Rename(__DIR__ . '/../data');
 
-        $this->assertEquals(3, $rename->file()->count());
+        $this->assertCount(3, $rename->lists());
     }
 
     public function testRenameFileToCurrentTime()
