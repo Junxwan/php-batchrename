@@ -52,6 +52,8 @@ class Rename
     {
         $index = 1;
 
+        $this->file->sortByName();
+
         foreach ($this->file as $file) {
             $newName = $name . '-' . $index;
 

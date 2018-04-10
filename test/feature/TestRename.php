@@ -17,10 +17,10 @@ class TestRename extends \PHPUnit\Framework\TestCase
 
         $rename->to($name = time());
 
-        $fileName = $rename->lists();
-
-        $this->assertContains($name . '-1.txt', $fileName);
-        $this->assertContains($name . '-2.txt', $fileName);
-        $this->assertContains($name . '-3.txt', $fileName);
+        $this->assertEquals([
+            $name . '-1.txt',
+            $name . '-2.txt',
+            $name . '-3.txt',
+        ], $rename->lists());
     }
 }
