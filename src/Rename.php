@@ -28,13 +28,39 @@ class Rename
     }
 
     /**
-     * loaded file
+     * loaded file list
      *
-     * @return Finder
+     * @return array
      */
-    public function file()
+    public function lists()
     {
-        return $this->file;
+        $list = [];
+
+        foreach ($this->file as $file) {
+            $list[] = $file->getFilename();
+        }
+
+        return $list;
+    }
+
+    /**
+     * batch rename
+     *
+     * @param string $name
+     */
+    public function to($name)
+    {
+        $index = 1;
+
+        foreach ($this->file as $file) {
+            $newName = $name . '-' . $index;
+
+            list($oldName, $newName) = $this->renameToArray($file, $newName);
+
+            rename($oldName, $newName);
+
+            $index++;
+        }
     }
 
     /**
@@ -47,5 +73,21 @@ class Rename
     private function loadFile($path)
     {
         return Finder::create()->files()->in($path);
+    }
+
+    /**
+     * rename info array
+     *
+     * @param \Symfony\Component\Finder\SplFileInfo $file
+     * @param string                                $toName
+     *
+     * @return array
+     */
+    private function renameToArray($file, $toName)
+    {
+        return [
+            $file->getPathname(),
+            $file->getPath() . '/' . $toName . '.' . $file->getExtension(),
+        ];
     }
 }
