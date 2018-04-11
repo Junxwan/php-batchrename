@@ -4,7 +4,7 @@ use Junxwan\Console\RenameCommand;
 use Symfony\Component\Console\Application as Console;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
-class TestConsole extends \PHPUnit\Framework\TestCase
+class ConsoleTest extends \PHPUnit\Framework\TestCase
 {
     public function testRenameCommand()
     {

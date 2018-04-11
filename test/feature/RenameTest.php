@@ -2,7 +2,7 @@
 
 use Junxwan\Rename;
 
-class TestRename extends \PHPUnit\Framework\TestCase
+class RenameTest extends \PHPUnit\Framework\TestCase
 {
     public function testFileList()
     {
