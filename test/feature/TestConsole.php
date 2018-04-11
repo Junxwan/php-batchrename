@@ -1,14 +1,14 @@
 <?php
 
-use Junxwan\Console\Application;
 use Junxwan\Console\RenameCommand;
+use Symfony\Component\Console\Application as Console;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
 class TestConsole extends \PHPUnit\Framework\TestCase
 {
     public function testRenameCommand()
     {
-        $console = new Application();
+        $console = new Console();
         $console->setAutoExit(false);
         $console->setCatchExceptions(false);
         $console->add($rename = new RenameCommand());

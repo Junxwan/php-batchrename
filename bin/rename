@@ -4,9 +4,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Junxwan\Console\RenameCommand;
-use Junxwan\Console\Application as Console;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Application as Console;
 
 (new Console())
     ->add(new RenameCommand())
