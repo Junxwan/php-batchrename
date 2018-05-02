@@ -6,14 +6,14 @@ class RenameTest extends \PHPUnit\Framework\TestCase
 {
     public function testFileList()
     {
-        $rename = new Rename(__DIR__ . '/../data');
+        $rename = new Rename(__DIR__ . '/data');
 
         $this->assertCount(3, $rename->lists());
     }
 
     public function testRenameFileToCurrentTime()
     {
-        $rename = new Rename(__DIR__ . '/../data');
+        $rename = new Rename(__DIR__ . '/data');
 
         $rename->to($name = time());
 
