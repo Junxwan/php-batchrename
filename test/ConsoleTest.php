@@ -7,6 +7,11 @@ use Symfony\Component\Console\Tester\ApplicationTester;
 
 class ConsoleTest extends \PHPUnit\Framework\TestCase
 {
+    protected function setUp()
+    {
+        $_ENV['APP_ENV'] = 'development';
+    }
+
     public function testRunCommand()
     {
         $console = new Console();

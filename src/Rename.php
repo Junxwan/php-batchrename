@@ -50,6 +50,10 @@ class Rename
      */
     public function to($name)
     {
+        if ($_ENV['APP_ENV'] != 'production') {
+            return '';
+        }
+
         $index = 1;
 
         $this->file->sortByName();
