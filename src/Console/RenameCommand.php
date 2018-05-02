@@ -3,6 +3,7 @@
 namespace Junxwan\Console;
 
 use Junxwan\Rename;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,7 +19,8 @@ class RenameCommand extends BaseCommand
     {
         $this->setName('rename')
             ->addArgument('name', InputArgument::REQUIRED, 'What is file name?')
-            ->addArgument('path', InputArgument::REQUIRED, 'What is file path?');
+            ->addArgument('path', InputArgument::REQUIRED, 'What is file path?')
+            ->addOption('formatZero', 'f', InputOption::VALUE_OPTIONAL, 'file number format', 2);
     }
 
     /**
@@ -36,7 +38,7 @@ class RenameCommand extends BaseCommand
         $ask->text($rename->lists());
 
         if ($ask->confirm('Are you rename file', false)) {
-            $rename->to($input->getArgument('name'));
+            $rename->to($input->getArgument('name'), $input->getOption('format'));
             $ask->success('success');
         } else {
             $ask->warning('no rename file');

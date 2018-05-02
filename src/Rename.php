@@ -47,8 +47,11 @@ class Rename
      * batch rename
      *
      * @param string $name
+     * @param int    $format
+     *
+     * @return string
      */
-    public function to($name)
+    public function to($name, $format = 2)
     {
         if ($_ENV['APP_ENV'] != 'production') {
             return '';
@@ -59,7 +62,7 @@ class Rename
         $this->file->sortByName();
 
         foreach ($this->file as $file) {
-            $newName = $name . '-' . $index;
+            $newName = $name . '-' . sprintf("%0" . $format . "d", $index);
 
             list($oldName, $newName) = $this->renameToArray($file, $newName);
 

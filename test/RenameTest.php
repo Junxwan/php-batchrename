@@ -20,9 +20,9 @@ class RenameTest extends \PHPUnit\Framework\TestCase
         $rename->to($name = time());
 
         $this->assertEquals([
-            $name . '-1.txt',
-            $name . '-2.txt',
-            $name . '-3.txt',
+            $name . '-01.txt',
+            $name . '-02.txt',
+            $name . '-03.txt',
         ], $rename->lists());
     }
 
