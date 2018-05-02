@@ -7,6 +7,23 @@ use Symfony\Component\Console\Tester\ApplicationTester;
 
 class ConsoleTest extends \PHPUnit\Framework\TestCase
 {
+    public function testRunCommand()
+    {
+        $console = new Console();
+        $console->setAutoExit(false);
+        $console->setCatchExceptions(false);
+        $console->add($rename = new RenameCommand());
+
+        $tester = new ApplicationTester($console);
+        $tester->run([
+            'command' => 'rename',
+            'name'    => 'test',
+            'path'    => __DIR__ . '/data',
+        ]);
+
+        $this->assertEquals(0, $tester->getStatusCode());
+    }
+
     public function testNoRenameCommand()
     {
         $console = new CommandTester(new RenameCommand());
