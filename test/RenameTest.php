@@ -4,11 +4,6 @@ use Junxwan\Rename;
 
 class RenameTest extends \PHPUnit\Framework\TestCase
 {
-    protected function setUp()
-    {
-        $_ENV['APP_ENV'] = 'production';
-    }
-
     public function testFileList()
     {
         $rename = new Rename(__DIR__ . '/data');
@@ -18,6 +13,8 @@ class RenameTest extends \PHPUnit\Framework\TestCase
 
     public function testRenameFileToCurrentTime()
     {
+        $_ENV['APP_ENV'] = 'production';
+
         $rename = new Rename(__DIR__ . '/data');
 
         $rename->to($name = time());
