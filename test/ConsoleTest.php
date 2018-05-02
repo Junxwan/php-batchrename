@@ -9,17 +9,12 @@ class ConsoleTest extends \PHPUnit\Framework\TestCase
 {
     public function testNoRenameCommand()
     {
-        $console = new Console();
-        $console->setAutoExit(false);
-        $console->setCatchExceptions(false);
-        $console->add($rename = new RenameCommand());
+        $console = new CommandTester(new RenameCommand());
+        $console->setInputs(['no']);
 
-
-        $tester = new ApplicationTester($console);
-        $tester->run([
-            'command' => 'rename',
-            'name'    => 'test',
-            'path'    => __DIR__ . '/data',
+        $console->execute([
+            'name' => 'test',
+            'path' => __DIR__ . '/data',
         ]);
 
         $this->assertEquals("
@@ -30,9 +25,11 @@ Batch Rename List
  test2.txt
  test3.txt
 
+ Are you rename file (yes/no) [no]:
+ > 
  [WARNING] no rename file                                                       
 
-", $tester->getDisplay());
+", $console->getDisplay());
     }
 
     public function testRenameCommand()
