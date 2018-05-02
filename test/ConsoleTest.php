@@ -26,13 +26,7 @@ class ConsoleTest extends \PHPUnit\Framework\TestCase
 
     public function testNoRenameCommand()
     {
-        $console = new CommandTester(new RenameCommand());
-        $console->setInputs(['no']);
-
-        $console->execute([
-            'name' => 'test',
-            'path' => __DIR__ . '/data',
-        ]);
+        $console = $this->commandExecute(['no']);
 
         $this->assertEquals("
 Batch Rename List
@@ -51,13 +45,7 @@ Batch Rename List
 
     public function testRenameCommand()
     {
-        $console = new CommandTester(new RenameCommand());
-        $console->setInputs(['yes']);
-
-        $console->execute([
-            'name' => 'test',
-            'path' => __DIR__ . '/data',
-        ]);
+        $console = $this->commandExecute(['yes']);
 
         $this->assertEquals('
 Batch Rename List
@@ -72,5 +60,23 @@ Batch Rename List
  [OK] success                                                                   
 
 ', $console->getDisplay());
+    }
+
+    /**
+     * @param array $input
+     *
+     * @return CommandTester
+     */
+    private function commandExecute(array $input)
+    {
+        $console = new CommandTester(new RenameCommand());
+        $console->setInputs($input);
+
+        $console->execute([
+            'name' => 'test',
+            'path' => __DIR__ . '/data',
+        ]);
+
+        return $console;
     }
 }

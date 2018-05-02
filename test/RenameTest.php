@@ -6,7 +6,7 @@ class RenameTest extends \PHPUnit\Framework\TestCase
 {
     public function testFileList()
     {
-        $rename = new Rename(__DIR__ . '/data');
+        $rename = $this->getTarget();
 
         $this->assertCount(3, $rename->lists());
     }
@@ -15,7 +15,7 @@ class RenameTest extends \PHPUnit\Framework\TestCase
     {
         $_ENV['APP_ENV'] = 'production';
 
-        $rename = new Rename(__DIR__ . '/data');
+        $rename = $this->getTarget();
 
         $rename->to($name = time());
 
@@ -24,5 +24,13 @@ class RenameTest extends \PHPUnit\Framework\TestCase
             $name . '-2.txt',
             $name . '-3.txt',
         ], $rename->lists());
+    }
+
+    /**
+     * @return Rename
+     */
+    private function getTarget()
+    {
+        return new Rename(__DIR__ . '/data');
     }
 }
