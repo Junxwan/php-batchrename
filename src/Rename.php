@@ -47,17 +47,18 @@ class Rename
      * batch rename
      *
      * @param string $name
+     * @param int    $start
      * @param int    $format
      *
      * @return string
      */
-    public function to($name, $format = 2)
+    public function to($name, $start = 1, $format = 2)
     {
         if ($_ENV['APP_ENV'] != 'production') {
             return '';
         }
 
-        $index = 1;
+        $index = $start;
 
         $this->file->sortByName();
 
@@ -79,7 +80,8 @@ class Rename
      *
      * @return Finder
      */
-    private function loadFile($path)
+    private
+    function loadFile($path)
     {
         return Finder::create()->files()->in($path);
     }
@@ -92,7 +94,8 @@ class Rename
      *
      * @return array
      */
-    private function renameToArray($file, $toName)
+    private
+    function renameToArray($file, $toName)
     {
         return [
             $file->getPathname(),

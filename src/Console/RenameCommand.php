@@ -20,7 +20,8 @@ class RenameCommand extends BaseCommand
         $this->setName('rename')
             ->addArgument('name', InputArgument::REQUIRED, 'What is file name?')
             ->addArgument('path', InputArgument::REQUIRED, 'What is file path?')
-            ->addOption('formatZero', 'f', InputOption::VALUE_OPTIONAL, 'file number format', 2);
+            ->addOption('formatZero', 'f', InputOption::VALUE_OPTIONAL, 'file number format', 2)
+            ->addOption('start', 's', InputOption::VALUE_OPTIONAL, 'file start number name', 1);
     }
 
     /**
@@ -37,8 +38,10 @@ class RenameCommand extends BaseCommand
         $ask->title('Batch Rename List');
         $ask->text($rename->lists());
 
+        $options = $input->getOptions();
+
         if ($ask->confirm('Are you rename file', false)) {
-            $rename->to($input->getArgument('name'), $input->getOption('format'));
+            $rename->to($input->getArgument('name'), $options['start'], $options['formatZero']);
             $ask->success('success');
         } else {
             $ask->warning('no rename file');
