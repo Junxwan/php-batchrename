@@ -3,6 +3,7 @@
 namespace Junxwan\Console;
 
 use Junxwan\Rename;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,8 +31,15 @@ class RenameCommand extends BaseCommand
     {
         $rename = new Rename($input->getArgument('path'));
 
-        $rename->to($input->getArgument('name'));
+        $ask = new SymfonyStyle($input, $output);
+        $ask->title('Batch Rename List');
+        $ask->text($rename->lists());
 
-        $output->writeln('success');
+        if ($ask->confirm('Are you rename file', false)) {
+            $rename->to($input->getArgument('name'));
+            $ask->success('success');
+        } else {
+            $ask->warning('no rename file');
+        }
     }
 }
