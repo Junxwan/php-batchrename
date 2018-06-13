@@ -50,7 +50,7 @@ class Rename
      * @param int    $start
      * @param int    $format
      *
-     * @return string
+     * @return void
      */
     public function to($name, $start = 1, $format = 2)
     {
