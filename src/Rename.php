@@ -47,39 +47,22 @@ class Rename
      * batch rename
      *
      * @param string $name
-     * @param int    $start
-     * @param int    $format
-     *
-     * @return void
      */
-    public function to($name, $start = 1, $format = 2)
+    public function to($name)
     {
-        $index = $start;
+        $index = 1;
 
         $this->file->sortByName();
 
         foreach ($this->file as $file) {
-            $newName = $name . '-' . sprintf("%0" . $format . "d", $index);
+            $newName = $name . '-' . $index;
 
             list($oldName, $newName) = $this->renameToArray($file, $newName);
 
-            $this->renameFile($oldName, $newName);
+            rename($oldName, $newName);
 
             $index++;
         }
-    }
-
-    /**
-     * rename file name
-     *
-     * @param string $oldName
-     * @param string $newName
-     *
-     * @return bool
-     */
-    protected function renameFile($oldName, $newName)
-    {
-        return rename($oldName, $newName);
     }
 
     /**

@@ -8,8 +8,6 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Application as Console;
 
-$_ENV['APP_ENV'] = 'production';
-
 (new Console())
     ->add(new RenameCommand())
     ->run(new ArgvInput, new ConsoleOutput);
