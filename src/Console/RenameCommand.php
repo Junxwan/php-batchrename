@@ -33,12 +33,16 @@ class RenameCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $rename = new Rename($input->getArgument('path'));
+        $options = $input->getOptions();
 
         $ask = new SymfonyStyle($input, $output);
         $ask->title('Batch Rename List');
-        $ask->text($rename->lists());
 
-        $options = $input->getOptions();
+        /**
+         * 事先列出所有要更改的檔案清單
+         * 並由使用者確認完成後在決定是否要更改
+         */
+        $ask->text($rename->lists());
 
         if ($ask->confirm('Are you rename file', false)) {
             $rename->to($input->getArgument('name'), $options['start'], $options['formatZero']);
