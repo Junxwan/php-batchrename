@@ -13,8 +13,6 @@ class RenameTest extends \PHPUnit\Framework\TestCase
 
     public function testRenameFileToCurrentTime()
     {
-        $_ENV['APP_ENV'] = 'production';
-
         $rename = $this->getTarget();
 
         $rename->to($name = time());
