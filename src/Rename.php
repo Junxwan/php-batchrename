@@ -80,8 +80,7 @@ class Rename
      *
      * @return Finder
      */
-    private
-    function loadFile($path)
+    private function loadFile($path)
     {
         return Finder::create()->files()->in($path);
     }
@@ -94,8 +93,7 @@ class Rename
      *
      * @return array
      */
-    private
-    function renameToArray($file, $toName)
+    private function renameToArray($file, $toName)
     {
         return [
             $file->getPathname(),
