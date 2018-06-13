@@ -67,10 +67,23 @@ class Rename
 
             list($oldName, $newName) = $this->renameToArray($file, $newName);
 
-            rename($oldName, $newName);
+            $this->renameFile($oldName, $newName);
 
             $index++;
         }
+    }
+
+    /**
+     * rename file name
+     *
+     * @param string $oldName
+     * @param string $newName
+     *
+     * @return bool
+     */
+    protected function renameFile($oldName, $newName)
+    {
+        return rename($oldName, $newName);
     }
 
     /**
